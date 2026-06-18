@@ -1,0 +1,30 @@
+import json
+import boto3
+
+table = boto3.resource('dynamodb').Table('Accounts')
+
+def lambda_handler(event, context):
+
+    accountId = event['accountId']
+    amount = int(event['amount'])
+
+    item = table.get_item(
+        Key={'accountId':accountId}
+    )['Item']
+
+    balance = item['balance'] + amount
+
+    table.update_item(
+        Key={'accountId':accountId},
+        UpdateExpression='SET balance=:b',
+        ExpressionAttributeValues={
+            ':b': balance
+        }
+    )
+
+    return {
+        'statusCode':200,
+        'body':json.dumps({
+            'newBalance':balance
+        })
+    }

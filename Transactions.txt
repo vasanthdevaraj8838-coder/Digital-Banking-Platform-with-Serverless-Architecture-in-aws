@@ -1,0 +1,6 @@
+{
+  "transactionId":"TXN001",
+  "accountId":"1001",
+  "amount":500,
+  "type":"Deposit"
+}

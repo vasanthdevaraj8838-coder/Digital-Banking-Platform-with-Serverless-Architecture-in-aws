@@ -1,0 +1,5 @@
+{
+  "accountId":"1001",
+  "customerName":"Vasanth",
+  "balance":5000
+}
